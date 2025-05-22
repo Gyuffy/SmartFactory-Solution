@@ -20,6 +20,8 @@ setup(
     license="TODO: License declaration",
     tests_require=["pytest"],
     entry_points={
-        "console_scripts": [],
+        "console_scripts": [
+            "dobot_homing_node = pjt.dobot_homing:main",
+        ],
     },
 )

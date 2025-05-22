@@ -238,6 +238,16 @@ def generate_launch_description():
 
     # -----------------------------------------------------------------------------------------------------------------
 
+    # -----------------------------------------------------------------------------------------------------------------
+    # Custom Procedures
+    homing_node = Node(
+        package="pjt",
+        executable="dobot_homing_node",
+        output="screen",
+    )
+
+    homing_after_bringup = TimerAction(period=5.0, actions=[homing_node])
+
     return LaunchDescription(
         [
             tool_null_event,
@@ -257,20 +267,6 @@ def generate_launch_description():
             PTP_action_sched,
             robot_state_sched,
             on_shutdown,
-            TimerAction(
-                period=5.0,
-                actions=[
-                    ExecuteProcess(
-                        cmd=[
-                            "ros2",
-                            "service",
-                            "call",
-                            "/dobot_homing_service",
-                            "dobot_msgs/srv/ExecuteHomingProcedure",
-                        ],
-                        output="screen",
-                    )
-                ],
-            ),
+            homing_after_bringup,
         ]
     )
