@@ -8,7 +8,7 @@ import time
 from dotenv import load_dotenv
 import os
 
-load_dotenv("/home/ssafy/Desktop/SmartFactory-Solution/laptop1/src/pjt/pjt/.env")
+load_dotenv("/home/ssafy/Desktop/SmartFactory-Solution/laptop1/.env")
 
 HOST = os.environ.get("HOST")
 

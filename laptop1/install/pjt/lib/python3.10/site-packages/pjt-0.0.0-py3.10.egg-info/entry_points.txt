@@ -1,4 +1,5 @@
 [console_scripts]
+detect_panel_node = pjt.realsensewithYolo11:main
 dobot_homing_node = pjt.dobot_homing:main
 socket_server_node = pjt.socket_server:main
 
