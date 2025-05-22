@@ -83,9 +83,10 @@ class RealSenseYoloNode(Node):
         color_image = np.asanyarray(color_frame.get_data())
 
         # YOLO inference
-        results = self.yolo_model(color_image)
+        results = self.yolo_model(color_image, conf=0.5, iou=0.95)
         if len(results) == 0:
             return
+
         result = results[0]  # 첫 번째 이미지 결과
 
         # 바운딩 박스/신뢰도/클래스 인덱스 꺼내기
@@ -96,11 +97,25 @@ class RealSenseYoloNode(Node):
         self.detection_result = String()
         for box, conf, cid in zip(boxes, confs, cls_ids):
             x1, y1, x2, y2 = map(int, box.tolist())
+
+            # (1) 좌표 유효성 검사
+            if x2 <= x1 or y2 <= y1:
+                continue
+
+            # (2) 이미지 경계 내로 클램핑 (optional)
+            x1, y1 = max(0, x1), max(0, y1)
+            x2 = min(color_image.shape[1], x2)
+            y2 = min(color_image.shape[0], y2)
+
+            object_roi = color_image[y1:y2, x1:x2]
+
             # 0-dim tensor → 파이썬 스칼라로 변환
             confidence = conf.item()  # 또는 float(conf)
             class_id = cid.item()  # 또는 int(cid)
 
             object_roi = color_image[y1:y2, x1:x2]
+            if object_roi.size == 0:
+                continue
             center_color = self.get_center_color(object_roi)
 
             color_name = self.get_color_name(center_color)
