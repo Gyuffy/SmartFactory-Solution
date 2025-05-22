@@ -1,0 +1,21 @@
+running egg_info
+writing ../../build/pjt/pjt.egg-info/PKG-INFO
+writing dependency_links to ../../build/pjt/pjt.egg-info/dependency_links.txt
+writing entry points to ../../build/pjt/pjt.egg-info/entry_points.txt
+writing requirements to ../../build/pjt/pjt.egg-info/requires.txt
+writing top-level names to ../../build/pjt/pjt.egg-info/top_level.txt
+reading manifest file '../../build/pjt/pjt.egg-info/SOURCES.txt'
+writing manifest file '../../build/pjt/pjt.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+copying launch/dobot.launch.py -> /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/share/pjt/launch
+running install_egg_info
+removing '/home/ssafy/Desktop/SmartFactory-Solution/install/pjt/lib/python3.10/site-packages/pjt-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/pjt/pjt.egg-info to /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/lib/python3.10/site-packages/pjt-0.0.0-py3.10.egg-info
+running install_scripts
+Installing dobot_homing_node script to /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/lib/pjt
+Installing socket_server_node script to /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/lib/pjt
+writing list of installed files to '/home/ssafy/Desktop/SmartFactory-Solution/build/pjt/install.log'

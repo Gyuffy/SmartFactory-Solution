@@ -1,3 +1,0 @@
-[console_scripts]
-dobot_homing_node = pjt.dobot_homing:main
-
