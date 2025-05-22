@@ -1,0 +1,31 @@
+running egg_info
+creating ../../build/pjt/pjt.egg-info
+writing ../../build/pjt/pjt.egg-info/PKG-INFO
+writing dependency_links to ../../build/pjt/pjt.egg-info/dependency_links.txt
+writing entry points to ../../build/pjt/pjt.egg-info/entry_points.txt
+writing requirements to ../../build/pjt/pjt.egg-info/requires.txt
+writing top-level names to ../../build/pjt/pjt.egg-info/top_level.txt
+writing manifest file '../../build/pjt/pjt.egg-info/SOURCES.txt'
+reading manifest file '../../build/pjt/pjt.egg-info/SOURCES.txt'
+writing manifest file '../../build/pjt/pjt.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/ssafy/Desktop/SmartFactory-Solution/build/pjt/build
+creating /home/ssafy/Desktop/SmartFactory-Solution/build/pjt/build/lib
+creating /home/ssafy/Desktop/SmartFactory-Solution/build/pjt/build/lib/pjt
+copying pjt/__init__.py -> /home/ssafy/Desktop/SmartFactory-Solution/build/pjt/build/lib/pjt
+running install
+running install_lib
+creating /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/lib/python3.10/site-packages/pjt
+copying /home/ssafy/Desktop/SmartFactory-Solution/build/pjt/build/lib/pjt/__init__.py -> /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/lib/python3.10/site-packages/pjt
+byte-compiling /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/lib/python3.10/site-packages/pjt/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/share/ament_index
+creating /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/share/ament_index/resource_index
+creating /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/share/ament_index/resource_index/packages
+copying resource/pjt -> /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/share/ament_index/resource_index/packages
+copying package.xml -> /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/share/pjt
+running install_egg_info
+Copying ../../build/pjt/pjt.egg-info to /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/lib/python3.10/site-packages/pjt-0.0.0-py3.10.egg-info
+running install_scripts
+writing list of installed files to '/home/ssafy/Desktop/SmartFactory-Solution/build/pjt/install.log'

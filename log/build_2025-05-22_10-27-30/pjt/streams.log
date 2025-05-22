@@ -1,0 +1,33 @@
+[0.469s] Invoking command in '/home/ssafy/Desktop/SmartFactory-Solution/src/pjt': PYTHONPATH=/home/ssafy/Desktop/SmartFactory-Solution/build/pjt/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/Desktop/SmartFactory-Solution/install/pjt/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/pjt build --build-base /home/ssafy/Desktop/SmartFactory-Solution/build/pjt/build install --record /home/ssafy/Desktop/SmartFactory-Solution/build/pjt/install.log --single-version-externally-managed install_data
+[0.639s] running egg_info
+[0.639s] creating ../../build/pjt/pjt.egg-info
+[0.639s] writing ../../build/pjt/pjt.egg-info/PKG-INFO
+[0.640s] writing dependency_links to ../../build/pjt/pjt.egg-info/dependency_links.txt
+[0.640s] writing entry points to ../../build/pjt/pjt.egg-info/entry_points.txt
+[0.640s] writing requirements to ../../build/pjt/pjt.egg-info/requires.txt
+[0.640s] writing top-level names to ../../build/pjt/pjt.egg-info/top_level.txt
+[0.640s] writing manifest file '../../build/pjt/pjt.egg-info/SOURCES.txt'
+[0.641s] reading manifest file '../../build/pjt/pjt.egg-info/SOURCES.txt'
+[0.641s] writing manifest file '../../build/pjt/pjt.egg-info/SOURCES.txt'
+[0.641s] running build
+[0.641s] running build_py
+[0.641s] creating /home/ssafy/Desktop/SmartFactory-Solution/build/pjt/build
+[0.641s] creating /home/ssafy/Desktop/SmartFactory-Solution/build/pjt/build/lib
+[0.641s] creating /home/ssafy/Desktop/SmartFactory-Solution/build/pjt/build/lib/pjt
+[0.641s] copying pjt/__init__.py -> /home/ssafy/Desktop/SmartFactory-Solution/build/pjt/build/lib/pjt
+[0.642s] running install
+[0.642s] running install_lib
+[0.642s] creating /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/lib/python3.10/site-packages/pjt
+[0.642s] copying /home/ssafy/Desktop/SmartFactory-Solution/build/pjt/build/lib/pjt/__init__.py -> /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/lib/python3.10/site-packages/pjt
+[0.642s] byte-compiling /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/lib/python3.10/site-packages/pjt/__init__.py to __init__.cpython-310.pyc
+[0.642s] running install_data
+[0.642s] creating /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/share/ament_index
+[0.642s] creating /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/share/ament_index/resource_index
+[0.642s] creating /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/share/ament_index/resource_index/packages
+[0.643s] copying resource/pjt -> /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/share/ament_index/resource_index/packages
+[0.643s] copying package.xml -> /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/share/pjt
+[0.643s] running install_egg_info
+[0.643s] Copying ../../build/pjt/pjt.egg-info to /home/ssafy/Desktop/SmartFactory-Solution/install/pjt/lib/python3.10/site-packages/pjt-0.0.0-py3.10.egg-info
+[0.644s] running install_scripts
+[0.657s] writing list of installed files to '/home/ssafy/Desktop/SmartFactory-Solution/build/pjt/install.log'
+[0.671s] Invoked command in '/home/ssafy/Desktop/SmartFactory-Solution/src/pjt' returned '0': PYTHONPATH=/home/ssafy/Desktop/SmartFactory-Solution/build/pjt/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/Desktop/SmartFactory-Solution/install/pjt/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/pjt build --build-base /home/ssafy/Desktop/SmartFactory-Solution/build/pjt/build install --record /home/ssafy/Desktop/SmartFactory-Solution/build/pjt/install.log --single-version-externally-managed install_data
