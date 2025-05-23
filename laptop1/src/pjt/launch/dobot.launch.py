@@ -250,12 +250,26 @@ def generate_launch_description():
 
     homing_after_bringup = TimerAction(period=10.0, actions=[homing_node])
 
-    # socket_server
+    # socket_server and detect
     socket_server_node = Node(
-        package="pjt", executable="socket_server_node", output="screen"
+        package="pjt", executable="detect_panel_node", output="screen"
     )
 
     server_open = TimerAction(period=10.0, actions=[socket_server_node])
+
+    # rqt_image_view 실행
+    rqt_image_view_open = ExecuteProcess(
+        cmd=[
+            "ros2",
+            "run",
+            "rqt_image_view",
+            "rqt_image_view",
+            "--ros-args",
+            "-r",
+            "/image:=/camera/color/detection_image",
+        ],
+        output="screen",
+    )
 
     return LaunchDescription(
         [
@@ -278,5 +292,6 @@ def generate_launch_description():
             on_shutdown,
             homing_after_bringup,
             server_open,
+            rqt_image_view_open,
         ]
     )
