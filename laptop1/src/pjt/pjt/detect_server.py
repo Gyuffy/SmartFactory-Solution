@@ -25,7 +25,7 @@ class RealSenseYoloNode(Node):
     def __init__(self):
         super().__init__("realsense_yolo11_node")
 
-        self._tcp_host = "0.0.0.0"
+        self._tcp_host = HOST
         self._tcp_port = 65432
         self._conn = None
         threading.Thread(target=self._start_tcp_server, daemon=True).start()
@@ -57,11 +57,9 @@ class RealSenseYoloNode(Node):
         h, s, v = hsv_color
         if 20 < h < 120 and s < 40 and 130 < v < 230:
             return "white"
-        elif (h > 150 or h < 20) and s > 200 and v > 90:
-            return "red"
-        elif 80 < h < 150 and s > 100 and 100 < v < 150:
+        elif 80 < h < 150 and s > 100 and 60 < v < 150:
             return "blue"
-        return "unknown"
+        return "red"
 
     def get_color_bgr(self, color_name):
         if color_name == "white":
