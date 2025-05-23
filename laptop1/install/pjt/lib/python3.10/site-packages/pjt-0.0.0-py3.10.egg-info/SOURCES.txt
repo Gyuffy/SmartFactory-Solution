@@ -12,6 +12,7 @@ launch/dobot.launch.py
 pjt/__init__.py
 pjt/dobot_homing.py
 pjt/realsensewithYolo11.py
+pjt/realsensewithYolo11_roi.py
 pjt/socket_server.py
 pjt/socket_server_org.py
 resource/pjt

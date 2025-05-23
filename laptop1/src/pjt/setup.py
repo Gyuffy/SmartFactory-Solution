@@ -23,7 +23,7 @@ setup(
         "console_scripts": [
             "dobot_homing_node = pjt.dobot_homing:main",
             "socket_server_node = pjt.socket_server:main",
-            "detect_panel_node = pjt.realsensewithYolo11:main",
+            "detect_panel_node = pjt.realsensewithYolo11_roi:main",
         ],
     },
 )

@@ -22,12 +22,13 @@ class RealSenseYoloNode(Node):
             "/home/ssafy/Desktop/SmartFactory-Solution/laptop1/best.pt"
         )
 
-        # realsense camera setup
+        # Realsense camera setup
         self.pipeline = rs.pipeline()
         config = rs.config()
         config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
         self.pipeline.start(config)
 
+        # ROS publish
         self.detection_publisher = self.create_publisher(
             String, "detection_results", 10
         )
@@ -35,7 +36,7 @@ class RealSenseYoloNode(Node):
 
         self.bridge = CvBridge()
 
-        self.timer = self.create_timer(0.1, self.timer_callback)
+        self.timer = self.create_timer(0.2, self.timer_callback)
 
     def get_color_name(self, hsv_color):
         h, s, v = hsv_color
@@ -68,6 +69,11 @@ class RealSenseYoloNode(Node):
         end_y = min(height, center_y + sample_size // 2)
 
         center_region = image[start_y:end_y, start_x:end_x]
+        if center_region.size == 0:
+            # 빈 영역이면 기본값 반환 (예: HSV(0,0,0))
+            print("center_region.size == 0 Error")
+            return np.array([0, 0, 0], dtype=float)
+
         hsv_region = cv2.cvtColor(center_region, cv2.COLOR_BGR2HSV)
         average_color = np.mean(hsv_region, axis=(0, 1))
 
@@ -83,7 +89,7 @@ class RealSenseYoloNode(Node):
         color_image = np.asanyarray(color_frame.get_data())
 
         # YOLO inference
-        results = self.yolo_model(color_image, conf=0.5, iou=0.95)
+        results = self.yolo_model(color_image, conf=0.7, iou=0.3)
         if len(results) == 0:
             return
 
