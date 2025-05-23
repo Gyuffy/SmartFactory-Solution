@@ -40,11 +40,11 @@ class RealSenseYoloNode(Node):
 
     def get_color_name(self, hsv_color):
         h, s, v = hsv_color
-        if 20 < h < 60 and s < 40 and 180 < v < 230:
+        if 20 < h < 120 and s < 40 and 130 < v < 230:
             return "white"
-        elif h > 150 and s > 200 and v > 150:
+        elif (h > 150 or h < 20) and s > 200 and v > 90:
             return "red"
-        elif 80 < h < 150 and s > 200 and 100 < v < 150:
+        elif 80 < h < 150 and s > 100 and 100 < v < 150:
             return "blue"
         return "unknown"
 

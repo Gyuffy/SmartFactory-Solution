@@ -1,0 +1,26 @@
+[0.447s] Invoking command in '/home/ssafy/Desktop/SmartFactory-Solution/laptop1/src/pjt': PYTHONPATH=/home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/pjt build --build-base /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build install --record /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/install.log --single-version-externally-managed install_data
+[0.620s] running egg_info
+[0.621s] writing ../../build/pjt/pjt.egg-info/PKG-INFO
+[0.621s] writing dependency_links to ../../build/pjt/pjt.egg-info/dependency_links.txt
+[0.621s] writing entry points to ../../build/pjt/pjt.egg-info/entry_points.txt
+[0.621s] writing requirements to ../../build/pjt/pjt.egg-info/requires.txt
+[0.621s] writing top-level names to ../../build/pjt/pjt.egg-info/top_level.txt
+[0.622s] reading manifest file '../../build/pjt/pjt.egg-info/SOURCES.txt'
+[0.623s] writing manifest file '../../build/pjt/pjt.egg-info/SOURCES.txt'
+[0.623s] running build
+[0.623s] running build_py
+[0.623s] copying pjt/realsensewithYolo11_roi.py -> /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build/lib/pjt
+[0.623s] running install
+[0.623s] running install_lib
+[0.623s] copying /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build/lib/pjt/realsensewithYolo11_roi.py -> /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt
+[0.624s] byte-compiling /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt/realsensewithYolo11_roi.py to realsensewithYolo11_roi.cpython-310.pyc
+[0.625s] running install_data
+[0.625s] running install_egg_info
+[0.626s] removing '/home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt-0.0.0-py3.10.egg-info' (and everything under it)
+[0.626s] Copying ../../build/pjt/pjt.egg-info to /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt-0.0.0-py3.10.egg-info
+[0.627s] running install_scripts
+[0.640s] Installing detect_panel_node script to /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/pjt
+[0.640s] Installing dobot_homing_node script to /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/pjt
+[0.640s] Installing socket_server_node script to /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/pjt
+[0.641s] writing list of installed files to '/home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/install.log'
+[0.656s] Invoked command in '/home/ssafy/Desktop/SmartFactory-Solution/laptop1/src/pjt' returned '0': PYTHONPATH=/home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/pjt build --build-base /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build install --record /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/install.log --single-version-externally-managed install_data
