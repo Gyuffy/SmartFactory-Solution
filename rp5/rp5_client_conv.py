@@ -15,6 +15,12 @@ PORT = 65432
 DIR_PIN = 17
 STEP_PIN = 27
 ENABLE_PIN = 22
+SERVO_PIN = 18
+
+# ── Servo angle ──────────────────────────────────────────────────────────
+CENTER_ANGLE = 135
+RIGHT_ANGLE = 175
+LEFT_ANGLE = 95
 
 # ── 전역 제어 변수 ──────────────────────────────────────────────────────────
 motor_running = False  # 모터 구동 플래그
@@ -25,10 +31,12 @@ chip = gpiod.Chip("gpiochip0")
 dir_line = chip.get_line(DIR_PIN)
 step_line = chip.get_line(STEP_PIN)
 enable_line = chip.get_line(ENABLE_PIN)
+servo_line = chip.get_line(SERVO_PIN)
 
 dir_line.request(consumer="dir", type=gpiod.LINE_REQ_DIR_OUT)
 step_line.request(consumer="step", type=gpiod.LINE_REQ_DIR_OUT)
 enable_line.request(consumer="enbl", type=gpiod.LINE_REQ_DIR_OUT)
+servo_line.request(consumer="servo", type=gpiod.LINE_REQ_DIR_OUT)
 
 
 # ── 모터 스텝 함수 ──────────────────────────────────────────────────────────
@@ -43,6 +51,16 @@ def step_motor():
         else:
             # 모터 정지 중에는 잠시 대기
             time.sleep(0.01)
+
+
+# ── 서보 모터 함수 ──────────────────────────────────────────────────────────
+def set_servo(angle):
+    pulse_width = (angle / 270) * (0.0025 - 0.0005) + 0.0005
+    for _ in range(10):
+        servo_line.set_value(1)
+        time.sleep(pulse_width)
+        servo_line.set_value(0)
+        time.sleep(0.02 - pulse_width)
 
 
 # ── 서버 연결 재시도 함수 ───────────────────────────────────────────────────
@@ -69,7 +87,7 @@ def main():
     s = connect()
     buff = ""
     last_detect_time = time.time()
-    TIMEOUT = 1.0  # 감지 없을 때 자동 정지 기준(초)
+    TIMEOUT = 5.0  # 감지 없을 때 자동 정지 기준(초)
 
     try:
         while True:
@@ -95,10 +113,17 @@ def main():
                     print(f">>> Detected panel: {label}, color: {color}")
 
                     # 백패널 감지 시 모터 구동
-                    if label == "back_panel":
+                    if label == "back_panel" and "board_panel":
                         motor_running = True
                         dir_line.set_value(0)  # CCW 방향
                         enable_line.set_value(0)  # 모터 드라이버 활성화
+
+                        if color == "blue":
+                            set_servo(LEFT_ANGLE)
+
+                        else:
+                            set_servo(RIGHT_ANGLE)
+
                     else:
                         motor_running = False
                         enable_line.set_value(1)  # 모터 드라이버 비활성화
@@ -122,6 +147,7 @@ def main():
         dir_line.release()
         step_line.release()
         enable_line.release()
+        servo_line.realease()
 
 
 if __name__ == "__main__":
