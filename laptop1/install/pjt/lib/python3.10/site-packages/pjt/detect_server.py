@@ -26,11 +26,14 @@ class RealSenseYoloNode(Node):
         super().__init__("realsense_yolo11_node")
 
         self._tcp_host = HOST
-        self._tcp_port = 65432
-        self._conn = None
-        threading.Thread(target=self._start_tcp_server, daemon=True).start()
+        self._tcp_port_65432 = 65432
+        self._tcp_port_20000 = 20000
+        self._conn_65432 = None
+        self._conn_20000 = None
+        threading.Thread(target=self._start_tcp_server_65432, daemon=True).start()
+        threading.Thread(target=self._start_tcp_server_20000, daemon=True).start()
         self.get_logger().info(
-            f"TCP server thread started on {self._tcp_host}:{self._tcp_port}"
+            f"TCP server threads started on {self._tcp_host}:65432 and :20000"
         )
 
         self.yolo_model = YOLO(
@@ -97,61 +100,47 @@ class RealSenseYoloNode(Node):
         if not color_frame:
             return
 
-        # ROI 좌표
         roi_x1, roi_y1 = 100, 120
         roi_x2, roi_y2 = 510, 345
 
-        # 원본 이미지
         color_image = np.asanyarray(color_frame.get_data())
 
-        # 전체 이미지로 YOLO inference
+        # ROI 사각형 그리기
+        cv2.rectangle(color_image, (roi_x1, roi_y1), (roi_x2, roi_y2), (255, 0, 0), 2)
+
         results = self.yolo_model(color_image, conf=0.7, iou=0.3)
         if len(results) == 0:
             return
         result = results[0]
 
-        # ROI 박스 시각화
-        cv2.rectangle(color_image, (roi_x1, roi_y1), (roi_x2, roi_y2), (255, 0, 0), 2)
-
         self.detection_result = String()
-        # 전체 바운딩 박스 순회
+        detected_label = None
+
         for box, conf, cid in zip(
             result.boxes.xyxy, result.boxes.conf, result.boxes.cls
         ):
             x1, y1, x2, y2 = map(int, box.tolist())
-            # detection 중심점 계산
             cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
-
-            # ROI 안에 있는 detection만 처리
             if not (roi_x1 <= cx <= roi_x2 and roi_y1 <= cy <= roi_y2):
-                continue
-
-            # 좌표 클램핑
-            x1, y1 = max(0, x1), max(0, y1)
-            x2 = min(color_image.shape[1], x2)
-            y2 = min(color_image.shape[0], y2)
-            if x2 <= x1 or y2 <= y1:
                 continue
 
             object_roi = color_image[y1:y2, x1:x2]
             if object_roi.size == 0:
                 continue
 
-            # 색상 검출
-            confidence = conf.item()
-            class_id = cid.item()
             center_color = self.get_center_color(object_roi)
             color_name = self.get_color_name(center_color)
-            color_bgr = self.get_color_bgr(color_name)
-
+            class_id = cid.item()
             label = self.yolo_model.names[class_id]
-            self.detection_result.data = f"{label} {color_name}"
+            label_with_color = f"{label} {color_name}"
 
-            # 결과 그리기
+            self.detection_result.data = label_with_color
+            detected_label = label
+
             cv2.rectangle(color_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
             cv2.putText(
                 color_image,
-                f"{label}-{color_name}",
+                label_with_color,
                 (x1, y1 - 10),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 0.5,
@@ -159,32 +148,68 @@ class RealSenseYoloNode(Node):
                 2,
             )
 
-        # 퍼블리시
+            break
+
         self.detection_publisher.publish(self.detection_result)
         ros_image_message = self.bridge.cv2_to_imgmsg(color_image, encoding="bgr8")
         self.image_publisher.publish(ros_image_message)
 
-        if self._conn:
+        if self._conn_65432 and self.detection_result.data:
             try:
-                # 줄바꿈(\n) 단위로 RP5에서 읽기 쉽게
-                payload = (self.detection_result.data + "\n").encode("utf-8")
-                self._conn.sendall(payload)
+                payload_65432 = (self.detection_result.data + "\n").encode("utf-8")
+                self._conn_65432.sendall(payload_65432)
             except Exception as e:
-                self.get_logger().error(f"TCP send failed: {e}")
+                self.get_logger().error(f"TCP send failed (65432): {e}")
+
+        if self._conn_20000 and detected_label:
+
+            try:
+                payload_65432 = (self.detection_result.data + "\n").encode("utf-8")
+                self._conn_20000.sendall(payload_65432)
+            except Exception as e:
+                self.get_logger().error(f"TCP send failed (20000): {e}")
+
+            # try:
+            #     if detected_label == "back_panel":
+            #         cmd = "job_back_panel\n"
+            #     elif detected_label == "board_panel":
+            #         cmd = "job_board_panel\n"
+            #     else:
+            #         cmd = None
+
+            #     if cmd:
+            #         self._conn_20000.sendall(cmd.encode("utf-8"))
+            # except Exception as e:
+            #     self.get_logger().error(f"TCP send failed (20000): {e}")
+
+    def _start_tcp_server_65432(self):
+        srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        srv.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        srv.bind((self._tcp_host, self._tcp_port_65432))
+        srv.listen(1)
+        self.get_logger().info("Waiting for RP5 connection on 65432...")
+        conn, addr = srv.accept()
+        self._conn_65432 = conn
+        self.get_logger().info(f"RP5 connected from {addr} (65432)")
+
+    def _start_tcp_server_20000(self):
+        srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        srv.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        srv.bind((self._tcp_host, self._tcp_port_20000))
+        srv.listen(1)
+        self.get_logger().info("Waiting for RoboDK client connection on 20000...")
+        conn, addr = srv.accept()
+        self._conn_20000 = conn
+        self.get_logger().info(f"Client connected from {addr} (20000)")
 
     def destory_node(self):
         self.pipeline.stop()
+        # 커넥션 정리
+        if self._conn_65432:
+            self._conn_65432.close()
+        if self._conn_20000:
+            self._conn_20000.close()
         super().destroy_node()
-
-    def _start_tcp_server(self):
-        srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        srv.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        srv.bind((self._tcp_host, self._tcp_port))
-        srv.listen(1)
-        self.get_logger().info("Waiting for RP5 connection...")
-        conn, addr = srv.accept()
-        self._conn = conn
-        self.get_logger().info(f"RP5 connected from {addr}")
 
 
 def main(args=None):

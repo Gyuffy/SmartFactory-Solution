@@ -24,7 +24,7 @@ LEFT_ANGLE = 95
 
 # ── 전역 제어 변수 ──────────────────────────────────────────────────────────
 motor_running = False  # 모터 구동 플래그
-step_delay = 0.0005  # 펄스 딜레이 (초) → 속도 조절: 값을 키우면 속도 ↓
+step_delay = 0.0002  # 펄스 딜레이 (초) → 속도 조절: 값을 키우면 속도 ↓
 
 # ── GPIO 초기화 ────────────────────────────────────────────────────────────
 chip = gpiod.Chip("gpiochip0")
@@ -113,7 +113,7 @@ def main():
                     print(f">>> Detected panel: {label}, color: {color}")
 
                     # 백패널 감지 시 모터 구동
-                    if label == "back_panel" and "board_panel":
+                    if label == "back_panel" or "board_panel":
                         motor_running = True
                         dir_line.set_value(0)  # CCW 방향
                         enable_line.set_value(0)  # 모터 드라이버 활성화
@@ -121,12 +121,16 @@ def main():
                         if color == "blue":
                             set_servo(LEFT_ANGLE)
 
-                        else:
+                        elif color == "white" or color == "red":
                             set_servo(RIGHT_ANGLE)
+
+                        else:
+                            set_servo(CENTER_ANGLE)
 
                     else:
                         motor_running = False
                         enable_line.set_value(1)  # 모터 드라이버 비활성화
+                        set_servo(CENTER_ANGLE)
 
                     last_detect_time = time.time()
             else:
