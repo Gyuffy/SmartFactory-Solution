@@ -100,8 +100,8 @@ class RealSenseYoloNode(Node):
         if not color_frame:
             return
 
-        roi_x1, roi_y1 = 100, 120
-        roi_x2, roi_y2 = 510, 345
+        roi_x1, roi_y1 = 160, 190
+        roi_x2, roi_y2 = 610, 345
 
         color_image = np.asanyarray(color_frame.get_data())
 

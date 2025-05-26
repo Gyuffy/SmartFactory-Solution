@@ -271,6 +271,13 @@ def generate_launch_description():
         output="screen",
     )
 
+    # pick and place
+    pick_and_place_node = Node(
+        package="pjt", executable="pickandplace_node", output="screen"
+    )
+
+    pick_and_place = TimerAction(period=35.0, actions=[pick_and_place_node])
+
     return LaunchDescription(
         [
             tool_null_event,
@@ -293,5 +300,6 @@ def generate_launch_description():
             homing_after_bringup,
             server_open,
             rqt_image_view_open,
+            pick_and_place,
         ]
     )

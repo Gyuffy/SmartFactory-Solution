@@ -24,6 +24,7 @@ setup(
             "dobot_homing_node = pjt.dobot_homing:main",
             # "socket_server_node = pjt.socket_server:main",
             "detect_panel_node = pjt.detect_server:main",
+            "pickandplace_node = pjt.pickandplace:main",
         ],
     },
 )

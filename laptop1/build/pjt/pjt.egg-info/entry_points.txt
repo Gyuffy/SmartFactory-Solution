@@ -1,4 +1,5 @@
 [console_scripts]
 detect_panel_node = pjt.detect_server:main
 dobot_homing_node = pjt.dobot_homing:main
+pickandplace_node = pjt.pickandplace:main
 
