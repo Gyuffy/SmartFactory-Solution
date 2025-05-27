@@ -5,7 +5,7 @@ from robodk import *  # RoboDK API
 from robolink import *  # Robot toolbox
 
 
-def main_process():
+def main_process(step):
     RDK = robolink.Robolink()
     rack1 = RDK.Item("R_FrontPanel", 2)
     rack2 = RDK.Item("R_Screen", 2)
@@ -835,33 +835,35 @@ def main_process():
         rack1.MoveJ([0.000000, -2100.000000])
         rack1.MoveJ([0.00, -2100.00])
 
-    while 1:
+    if step == 0:
         RDK.RunProgram("All_reset")
         wait_time(5)
-        for i in range(10):
-            job1(i)  # Start rack TVFrontPane pick_up to conveyor1
-            job2()  # Run conveyor1
-            job3(i)  # Start rack TVScreen pick_up to conveyor1
-            job4()  # Run conveyor1
-            job5()  # TV_Guid pickup, move to conveyor4
-            job6(i)  # TVFrontPane move to conveyor4
-            job7()  # Run conveyor1
-            job8(i)  # TVScreen move to conveyot4
-            job9()  # conveyor1 reset
-            job10()  ###########move to rack + wait socket sig1
+        job1(0)
+        job2()
 
-            job11()  # if sig==1 move to rack
-            job12()  # Start TVFrame1 pick_up to conveyor1
-            job13()  # Run conveyor1
-            job14()  # pickup TVFrame1 to conveyor2
-            job15()  # PCB 조립
-            job16(i)  # CON3에 놓기 wait socket sig2
+    elif step == 1:
+        job3(0)
+        job4()
+        job5()
+        job6(0)
+        job7()
+        job8(0)
+        job9()
+        job10()
 
-            job17()  # 백패널 보이기, Rack 이동
-            job18()  # BackPanel pick to con1
-            job19()  # Run conveyor1
-            job20()  # 조립
-            job21(i)  # 폼 조립
-            job22(i)
-            job23()
-            time.sleep(5)
+    elif step == 2:
+        job11()
+        job12()
+        job13()
+        job14()
+        job15()
+        job16(0)
+
+    elif step == 3:
+        job17()
+        job18()
+        job19()
+        job20()
+        job21(0)
+        job22(0)
+        job23()

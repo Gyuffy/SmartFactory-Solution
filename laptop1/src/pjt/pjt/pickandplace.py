@@ -7,13 +7,16 @@ from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.executors import MultiThreadedExecutor
 from dobot_msgs.action import PointToPoint
 from dobot_msgs.srv import SuctionCupControl
+from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
+from rclpy.executors import SingleThreadedExecutor
 
 
 class PickAndPlace(Node):
     def __init__(self):
         super().__init__("pick_and_place_demo")
+        cb_group = MutuallyExclusiveCallbackGroup()
         self._action_client = ActionClient(
-            self, PointToPoint, "PTP_action", callback_group=ReentrantCallbackGroup()
+            self, PointToPoint, "PTP_action", callback_group=cb_group
         )
         self.cli = self.create_client(SuctionCupControl, "dobot_suction_cup_service")
 
@@ -22,14 +25,14 @@ class PickAndPlace(Node):
         self.req = SuctionCupControl.Request()
 
         self.tasks_list = [
-            ["move", [23.8, -117.3, 60.0, -150.0], 1],
-            ["move", [23.8, -117.3, -8.5, -150.0], 1],
+            ["move", [23.8, -117.3, 60.0, -90.0], 1],
+            ["move", [23.8, -117.3, -8.5, -90.0], 1],
             ["gripper", True],
             ["move", [23.8, -117.3, 60.0, -90.0], 1],
-            ["move", [162.5, 30.4, 60.0, -90.0], 1],
-            ["move", [162.5, 30.4, -1.9, -90.0], 1],
+            ["move", [152.5, 30.4, 60.0, -90.0], 1],
+            ["move", [152.5, 30.4, -1.9, -90.0], 1],
             ["gripper", False],
-            ["move", [162.5, 30.4, 60.0, -90.0], 1],
+            ["move", [152.5, 30.4, 60.0, -90.0], 1],
             ["move", [18.0, -118.5, 60.0, -90.0], 1],
         ]
 
@@ -101,12 +104,14 @@ class PickAndPlace(Node):
 
 
 def main(args=None):
-    rclpy.init(args=args)
+    # rclpy.init(args=args)
     action_client = PickAndPlace()
+    executor = SingleThreadedExecutor()
+    executor.add_node(action_client)
     action_client.execute()
-    executor = MultiThreadedExecutor()
     rclpy.spin(action_client, executor=executor)
 
 
-if __name__ == "__main__":
+def dobot_run():
+    print("dobot_run()")
     main()

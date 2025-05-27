@@ -22,6 +22,7 @@ pjt/realsensewithYolo11_roi.py
 pjt/socket_server.py
 pjt/socket_server_org.py
 pjt/tcp_server.py
+pjt/tcp_server_20000.py
 resource/pjt
 test/test_copyright.py
 test/test_flake8.py

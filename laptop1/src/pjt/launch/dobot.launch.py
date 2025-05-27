@@ -300,6 +300,6 @@ def generate_launch_description():
             homing_after_bringup,
             server_open,
             rqt_image_view_open,
-            pick_and_place,
+            # pick_and_place,
         ]
     )
