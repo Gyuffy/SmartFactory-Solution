@@ -1,0 +1,39 @@
+[0.482s] Invoking command in '/home/ssafy/Desktop/SmartFactory-Solution/laptop1/src/pjt': PYTHONPATH=/home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/pjt build --build-base /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build install --record /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/install.log --single-version-externally-managed install_data
+[0.661s] running egg_info
+[0.661s] writing ../../build/pjt/pjt.egg-info/PKG-INFO
+[0.661s] writing dependency_links to ../../build/pjt/pjt.egg-info/dependency_links.txt
+[0.662s] writing entry points to ../../build/pjt/pjt.egg-info/entry_points.txt
+[0.662s] writing requirements to ../../build/pjt/pjt.egg-info/requires.txt
+[0.662s] writing top-level names to ../../build/pjt/pjt.egg-info/top_level.txt
+[0.663s] reading manifest file '../../build/pjt/pjt.egg-info/SOURCES.txt'
+[0.663s] writing manifest file '../../build/pjt/pjt.egg-info/SOURCES.txt'
+[0.663s] running build
+[0.664s] running build_py
+[0.664s] copying pjt/order.py -> /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build/lib/pjt
+[0.664s] copying pjt/pickandplace.py -> /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build/lib/pjt
+[0.664s] copying pjt/pickandplace_org.py -> /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build/lib/pjt
+[0.664s] copying pjt/detect_server.py -> /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build/lib/pjt
+[0.664s] copying pjt/detect_server copy.py -> /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build/lib/pjt
+[0.664s] running install
+[0.664s] running install_lib
+[0.665s] copying /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build/lib/pjt/order.py -> /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt
+[0.665s] copying /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build/lib/pjt/pickandplace.py -> /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt
+[0.665s] copying /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build/lib/pjt/pickandplace_org.py -> /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt
+[0.665s] copying /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build/lib/pjt/detect_server.py -> /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt
+[0.665s] copying /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build/lib/pjt/detect_server copy.py -> /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt
+[0.665s] byte-compiling /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt/order.py to order.cpython-310.pyc
+[0.666s] byte-compiling /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt/pickandplace.py to pickandplace.cpython-310.pyc
+[0.667s] byte-compiling /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt/pickandplace_org.py to pickandplace_org.cpython-310.pyc
+[0.667s] byte-compiling /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt/detect_server.py to detect_server.cpython-310.pyc
+[0.669s] byte-compiling /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt/detect_server copy.py to detect_server copy.cpython-310.pyc
+[0.670s] running install_data
+[0.670s] copying launch/dobot.launch.py -> /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/share/pjt/launch
+[0.671s] running install_egg_info
+[0.672s] removing '/home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt-0.0.0-py3.10.egg-info' (and everything under it)
+[0.672s] Copying ../../build/pjt/pjt.egg-info to /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages/pjt-0.0.0-py3.10.egg-info
+[0.672s] running install_scripts
+[0.685s] Installing detect_panel_node script to /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/pjt
+[0.685s] Installing dobot_homing_node script to /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/pjt
+[0.685s] Installing pickandplace_node script to /home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/pjt
+[0.686s] writing list of installed files to '/home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/install.log'
+[0.701s] Invoked command in '/home/ssafy/Desktop/SmartFactory-Solution/laptop1/src/pjt' returned '0': PYTHONPATH=/home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ssafy/Desktop/SmartFactory-Solution/laptop1/install/pjt/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/pjt build --build-base /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/build install --record /home/ssafy/Desktop/SmartFactory-Solution/laptop1/build/pjt/install.log --single-version-externally-managed install_data

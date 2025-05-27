@@ -36,7 +36,7 @@ class RealSenseYoloNode(Node):
         # ==== pick-and-place task list 동적 생성용 설정 ====
         self.base_tasks_list = [
             ["move", [23.8, -120.3, 60.0, -90.0], 1],
-            ["move", [23.8, -120.3, -10.0, -90.0], 1],
+            ["move", [23.8, -120.3, -11.5, -90.0], 1],
             ["gripper", True],
             ["move", [23.8, -120.3, 60.0, -90.0], 1],
             ["move", [152.5, 30.4, 60.0, -90.0], 1],
@@ -46,8 +46,8 @@ class RealSenseYoloNode(Node):
             ["move", [18.0, -118.5, 60.0, -90.0], 1],
         ]
         self.loop_count = 0
-        self.x_offsets = [0.0, 38.0, 74.0]
-        self.y_offsets = [0.0, -70.0]
+        self.x_offsets = [0.0, 36.5, 77.0]
+        self.y_offsets = [0.0, -75.0]
         self.update_tasks_list()
 
         # ==== cooldown 설정 ====
